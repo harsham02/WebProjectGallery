@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Menu Design</title>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<style>
+*{
+    margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+  }
+  .container
+   {
+      width :100%;
+      min-height: 100vh;
+      background: linear-gradient(#f44336, #730228);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+   .selector{
+    width: 350px;
+    cursor: pointer;
+   }
+
+#selectField{
+width: 100%;
+padding: 15px 20px;
+margin-bottom: 30px;
+box-sizing: border-box;
+background: #9f9b9b;
+border-radius: 6px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+   }
+  .arrow{
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .down{
+     transform: rotate(45deg); 
+     cursor: pointer;
+     transition: transform 0.5s;
+  }
+
+  #list{
+    width: 100%;
+    background: #878383;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .options{
+    width: 100%;
+    padding: 15px;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .options:hover{
+    background: #cfcccc;
+  }
+  .hide{
+    visibility: hidden;
+  }
+.arrow1{
+    border: solid black;
+    border-width: 3px 0 0 3px;
+    display: inline-block;
+    padding: 3px;
+}
+</style>
+<body>
+    <div class="container">
+        <div class="selector">
+            <div id="selectField">
+                <p id="selectText">Select Social Media</p>
+                <p><i class="arrow down" id="arrowIcon"></i></p>
+            </div>
+            <ul id="list" class="hide">
+                <li class="options">
+                    <i class="fab fa-whatsapp"> Whatsapp</i>
+                </li>
+                    <li class="options">
+                        <i class="fab fa-facebook"> Facebook</i>
+                    </li>
+                    <li class="options">
+                        <i class="fas fa-envelope">  Mail</i>
+                    </li>
+                    <li class="options">
+                        <i class="fab fa-github"> Github</i>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var selectField = document.getElementById("selectField");
+        var selecttext = document.getElementById("selectText");
+        var options = document.getElementsByClassName("options");
+        var list = document.getElementById("list");
+        var arrowIcon = document.getElementById("arrowIcon");
+        selectField.onclick = function(){
+           list.classList.toggle("hide");
+           arrowIcon.classList.toggle("arrow1");
+        }
+        for(Option of options)
+        {
+            Option.onclick = function()
+            {
+                selecttext.innerHTML = this.textContent;
+                list.classList.toggle("hide");
+                arrowIcon.classList.toggle("arrow1");
+            }
+        }
+    </script>
+</body>
+</html>

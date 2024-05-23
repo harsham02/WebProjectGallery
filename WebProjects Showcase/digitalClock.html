@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>clock</title>
+    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <body>
+      <div class="container">
+       <h1>DIGITAL<span> CLOCK<span></h1> <br>
+ 
+      <div id="display">00:00:00 &nbsp;</div>
+</div>
+        </body>
+
+        <style>
+
+body {
+    background-color: rgb(150, 143, 143);
+}
+
+      .container {
+        width: 100vw;
+        max-width: 600px;
+        background: linear-gradient(rgba(36, 54, 79, 0.8), #33404b);
+        background-size: cover;
+        background-position: center;
+        padding: 20px 0;
+        color: #fff;
+        margin: 70px auto 0;
+        box-shadow: 0px 16px 10px 6px rgba(3, 3, 3, 0.4);   
+        border-radius: 20px;   
+    }
+
+    span {
+        color: rgb(65, 220, 240);
+    }
+
+ h1{
+
+  padding: 20px;
+  margin: 15px;
+  border-radius: 50px;
+  background: transparent;
+  font-size: 40px;
+   text-align: center;
+   text-shadow: -8px -8px 8px 12px #a28989;
+   
+    }
+
+
+    #display{
+        padding: 32px;
+        border-radius: 50px;
+        text-align: center; 
+        text-shadow: 0px 30px 20px rgba(30, 30, 30, 0.4);
+        font-size: 60px;
+        
+    }
+
+        
+        </style>
+
+        <script>
+          function updateClock() {
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            var ampm = hour >= 12 ? 'PM' : 'AM';
+
+            hour = hour % 12;
+            hour = hour ? hour : 12; // Handle midnight (0 hours)
+
+            hour = (hour < 10) ? "0" + hour : hour;
+            minute = (minute < 10) ? "0" + minute : minute;
+            second = (second < 10) ? "0" + second : second;
+
+            document.getElementById('display').innerHTML= `${hour} : ${minute} : ${second} &nbsp; <span> ${ampm} <span>`;       
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call to display the clock immediately
+    </script>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Seach Engine</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, rgb(42, 42, 99), rgb(38, 38, 134));
+       color: #fff;
+       width: 100vw;
+       height: 100vh;
+   }
+   h1 {
+    text-align: center;
+    margin: 100px auto 50px;
+   }
+
+   form {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    height: 80px;
+    background: #434989;
+    display: flex;
+    align-items: center;
+   }
+
+   form input {
+    flex: 1;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    color: #fff;
+    font-size: 20px;
+    padding: 0 30px;
+    border-radius: 8px;
+   }
+
+   form button {
+    padding:  0 40px;
+    height: 100%;
+    background-color: #ff3929;
+    color: #fff;
+    font-size: 20px;
+    border: 0;
+    outline: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+   }
+
+   ::placeholder {
+    color: #fff;
+    font-size: 20px;
+   }
+
+#show-more-btn{
+  background: #ff3929;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px auto 100px;
+  cursor: pointer;
+  display: none;
+  
+
+}
+</style>
+<body>
+    <h1>Image Search Engine</h1>
+    <form id="search-form">
+        <input type="text" id="seach-box" placeholder="Search anything here...">
+        <button>Search</button>
+    </form>
+    <div id="search-result"></div>
+    <button id="show-more-btn">Show more</button>
+</body>
+
+<script>
+
+const searchForm = document.getElementById("search-from");
+const searchBox= document.getElementById("search-box");
+const searchResult = document.getElementById("search-reslut");
+const showMoreBtn = document.getElementById("show-more-btn");
+
+
+</script>
+</html>

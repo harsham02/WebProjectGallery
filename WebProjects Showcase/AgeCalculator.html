@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+</head>
+
+<style>
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+body {
+     background: rgb(112, 112, 228);
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    color: aliceblue;
+    background: none;
+    padding: 0 30px;
+    padding: 10px;
+    margin: 50px;
+}
+ .calculator {
+   
+    max-width: 600px;
+    margin: 5% 30%;
+} 
+
+.input-box {
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(239, 226, 226, 0.3);
+    display:flex;
+    float: left;
+    align-items: center; 
+}
+
+.input-box input {
+    flex: 1;
+    margin-right: 20px;
+    padding: 16px 40px;
+    border: 0;
+    outline: 0;
+    font-size: 20px;
+    align-items: center;
+    border-radius: 5px;
+    position: relative; 
+}
+.input-box button {
+
+    background: #eec50d;
+    padding: 15px 20px;
+    border: 0;
+    outline: 0;
+    margin-left: 5%;
+    font-size: 20px;
+    border-radius: 5px;
+    font-weight: 400;
+    cursor: pointer;
+
+}
+
+.input-box button:hover {
+    border: 2px solid gray;
+    box-shadow: 2px 2px 12px #5627c4;
+
+}
+
+#res{
+   font-size: 30px; 
+   display: block;
+}
+
+#res span {
+
+    color: #f3ca16;
+}
+
+span {
+    color: #eec50d;
+}
+
+</style>
+<body>
+
+    <div class="container">
+    <div class="calculator">
+    <h1><span>Age</span> Calculator</h1>
+    <div class="input-box">
+        <input type="date" id="date">
+        <button type="submit" onclick="calculateAge()">Calculate</button>
+    </div>
+    <p id="res"></p>
+   </div>
+
+    
+</body>
+
+<script>
+    let userInput = document.getElementById('date');
+    let result = document.getElementById('res');
+    function calculateAge()
+    {
+        let birthDay = new Date(userInput.value);
+
+        let d1 = birthDay.getDate();
+        let m1 = birthDay.getMonth() +1;
+        let y1 = birthDay.getFullYear();
+
+        let today = new Date();
+
+        let d2 = today.getDate();
+        let m2 = today.getMonth() + 1;
+        let y2 = today.getFullYear();
+
+       let d3, m3, y3;
+
+       y3 = y2 - y1;
+
+
+       if(m2 >= m1 )
+       {
+        m3 = m2 - m1;
+       }else{
+        y3--;
+        m3 = 12 + m2 - m1;
+       }
+
+       if(d2 >= d1)
+       {
+        d3 = d2 - d1;
+       }else {
+         m3--;
+         d3 = getDaysInMonth(y1, m1) + d2 - d1;
+       }
+
+       if(m3<0)
+       {
+        m3 =11;
+        y3--;
+       }
+       result.innerHTML = `you are <span> ${y3} </span> years, <span> ${m3} </span> months and <span> ${d3} </span>  days old`;
+    }
+
+    function getDaysInMonth(year, month)
+    {
+         return new Date(year, month, 0).getDate();
+    }
+ </script>
+</html>

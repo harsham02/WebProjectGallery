@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+
+    <script src="https://kit.fontawesome.com/b7e0da523c.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins' sans-serif;
+    }
+    body {
+        background: #333;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .container{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+
+    }
+    .music-player
+    {
+        background-color: #e4b1b9;
+        width: 380px;
+        max-height: 570px;
+        padding: 25px 35px;
+        text-align: center;
+
+    }
+     nav {
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 30px;
+    } 
+
+    .circle{
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        background: #ebe7e7;
+        color: #9f0552;
+        box-shadow: 3px 10px 10px #f9b8de;
+    }
+.song-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 0px 10px 8px #b474b5;
+    border: 6px solid #efeeee;
+}
+
+.music-player h1 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+    margin-top: 20px;
+}
+
+.music-player p {
+    font-size: 14px;
+    padding: 5px;
+    font-weight: 100px;
+    color: #333;
+}
+
+#progress {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #f53192;
+    border-radius: 4px;
+    margin: 40px 0;
+}
+#progress::-webkit-slider-thumb {
+     -webkit-appearance: none;
+     background: #f53192;
+     width: 25px;
+     height: 25px;
+     border-radius: 50%;
+     border: 5px solid #fff;
+
+}
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.controls div {
+    width: 45px;
+    height: 45px;
+    margin: 15px;
+    background-color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #f53192;
+    box-shadow: 0 10px 20px rgba(255, 26, 26, 0.22);
+    cursor: pointer;
+}
+.controls div:nth-child(2)
+{
+    transform: scale(1.5);
+    background: #f53192;
+    color: #fff;
+}
+</style>
+<body>
+    
+    <div class="container">
+       <div class="music-player">
+        <nav>
+            <div class="circle">
+                <i class="fa-solid fa-angle-left"></i>
+             </div>
+
+            <div class="circle">
+                  <i class="fa-solid fa-bars"></i>
+              </div>
+        </nav>    
+        <img src="./img/gg.jpg" class="song-img">
+        <h1>Aleya Kare</h1>
+        <p>Vijay prakash, Puneeth Rajkumar, amogha varsha</p>
+         
+        <audio id="song">
+            <source src="./img/appu.mp3" type="audio/mp3">
+        </audio>
+        <input type="range" value="0" id="progress">
+
+        <div class="controls">
+            <div><i class="fa-solid fa-backward"></i></div>
+            <div onclick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+            <div><i class="fa-solid fa-forward"></i></div>
+        
+        </div>
+    </div>
+    </div>
+</body>
+
+<script>
+    let progress = document.getElementById("progress");
+    let song = document.getElementById("song");
+    let ctrlIcon = document.getElementById("ctrlIcon");
+
+    song.onloadedmetadata = function()
+    {
+        progress.max = song.duration;
+        progress.value = song.currentTime;
+    }
+
+    function playPause()
+    {
+        if(ctrlIcon.classList.contains("fa-pause"))
+        {
+            song.pause();
+            ctrlIcon.classList.remove("fa-pause");
+            ctrlIcon.classList.add("fa-play");
+        }
+        else {
+            song.play();
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+        }
+    }
+
+    if(song.play())
+    {
+      setInterval(() =>{
+        progress.value = song.currentTime;
+      }, 500);
+    }
+
+    progress.onchange = function() {
+        song.play();
+        song.currentTime = progress.value;
+        ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+    }
+</script>
+</html>

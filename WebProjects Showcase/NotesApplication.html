@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Application</title>
+</head>
+<style>
+    *{
+  margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'poppins', sans-serif;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #936bb9, #5f92df);
+    color: #fff;
+    padding: 40px;
+}
+
+.container h1 {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.container button {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(#6d0eda, #54415a);
+    color: #fff;
+    font-size: 20px;
+    outline: 0;
+    border: 0;
+    border-radius: 20px;
+    padding: 15px 25px;
+    margin: 30px 0 30px;
+    cursor: pointer;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+     max-width: 500px;
+     min-height: 180px;
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    margin: 20px 0;
+    outline: none;
+    border-radius: 5px;
+}
+
+.input-box img {
+ 
+    width: 25px;
+    position: absolute;
+    cursor: pointer;
+    bottom: 15px;
+    right: 15px;
+}
+</style>
+<body>
+
+    <div class="container">
+        <h1>Notes</h1>
+        <button type="button" class="btn">Create Notes</button>
+        <div class="notes-container">
+         <p contenteditable="true" class="input-box">  &demptyv;</p>
+          
+        </div>
+
+    </div>
+    <script>
+
+        const notesContainer = document.querySelector(".notes-container");
+        const createBtn = document.querySelector(".btn");
+        let notes = document.querySelectorAll(".input-box");
+
+        function showNotes()
+        {
+            notesContainer.innerHTML = localStorage.getItem("notes");
+            
+        }
+
+        showNotes();
+
+function updateStorage() {
+
+    localStorage.setItem("notes", notesContainer.innerHTML);
+    
+}
+
+        createBtn.addEventListener("click", () => {
+            let inputBox = document.createElement("p");
+            let img = document.createElement("img");
+            inputBox.className = "input-box";
+            inputBox.setAttribute("contenteditable", "true");
+            img.src = "./img/hidden.png";
+            notesContainer.appendChild(inputBox).appendChild(img);
+
+        })
+
+      notesContainer.addEventListener("click", function(e)
+    {
+        if(e.target.tagName === "IMG")
+        {
+            e.target.parentElement.remove();
+             updateStorage();
+        }else if(e.target.tagName === "P")
+        {
+            notes = document.querySelectorAll(".input-box");
+            notes.forEach(nt => {
+                nt.onkeyup = function() {
+                     updateStorage();
+                }
+            })
+        }
+    })
+
+
+    document.addEventListener("keydown", event => {
+        if(event.key === "Enter")
+        {
+            document.execCommand("insertLineBreak");
+            event.preventDefault();
+        }
+    })
+       
+    </script>    
+</body>
+</html>

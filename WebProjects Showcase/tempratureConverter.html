@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temprature Converter</title>
+</head>
+<style>
+body {
+
+  background: #b3a2a2;
+}
+.container {
+        width: 100vw;
+        max-width: 600px;
+        background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8), #191919);
+        background-size: cover;
+        background-position: center;
+    
+        padding: 40px 0;
+        color: #fff;
+        margin: 100px auto 0;
+        box-shadow: 12px 6px 12px 6px rgba(0,0,0,0.4);      
+    }
+
+    h1 {
+        text-align: center;
+        text-decoration: underline;
+        padding: 0;
+        margin: 0;
+    }
+
+    label, input, h3{
+      
+        margin: 8px 30px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+   button{
+        
+       margin-left: 100px;
+       margin-top: 40px;
+        font-size: 20px;
+        font-weight: 300;
+        padding: 8px;
+        background-color: #d5d3d3;
+    }
+    button:hover{
+        background-color: rgb(143, 142, 142);
+        color: #fff;
+        cursor: pointer;
+    }
+    input{
+        background-color: rgb(160, 188, 188);
+        border: none;
+        padding: 6px;
+    }
+
+    #display {
+        margin: 20px 0px 0 60px;
+        font-size: 70px;
+    }
+ #counter{
+    background-position: center;
+        font-size: 100px;
+        text-align: center;
+        margin-left: 250px;
+    }
+
+
+</style>
+<body>
+
+    <div class="container">
+    <h1>Temprature Converter</h1><br><br>
+    <div class="converter">
+        <label>Enter a Temprature: </label><br>
+        <input type="text" id="userInput">
+        <h3>Convert To :</h3>
+        <label rel="unit"><input type="radio" id="celsius" name="unit">Celsius</label><br>
+        <label rel="unit"><input type="radio" id="fahrenheit" name="unit">Fahrenheit</label><br>
+        <button type="submit" id="submitBtn">submit</button>
+        <div id="display"></div>
+        </div>
+    </div>
+    </div>
+
+    <div class="container">
+    <h1>Counter Program</h1>
+    <span id="counter">0</span><br>
+    <button type="button" id="inc">inc</button>
+    <button type="button" id="dec">dec</button>
+    <button type="button" id="reset">reset</button>
+    </div> 
+    </body>
+    <div class="container">
+    <h1>Number Guessing Game</h1>
+    <h3>Pick a Number between  1- 10</h3><br>
+    <label>Enter a guess</label><br>
+    <input id="guess"><br>
+    <button type="button" id="submitGuess">Submit</button>
+     </div>
+</body>
+
+<script>
+   document.getElementById('submitBtn').onclick = function()
+   {
+    let temp;
+
+    if(document.getElementById("celsius").checked)
+        {
+            temp = document.getElementById("userInput").value;
+            temp = Number(temp);
+            temp = toCelsius(temp);
+         
+           temp = temp.toLocaleString(undefined, {style : "unit", unit : "celsius"});
+            document.getElementById("display").innerHTML = temp;
+        }
+    
+    else if(document.getElementById("fahrenheit").checked)
+    {
+        temp = document.getElementById("userInput").value;
+                temp = Number(temp);
+                temp = toFahrenheit(temp);
+
+                 temp = temp.toLocaleString(undefined, {style : "unit", unit : "fahrenheit"});
+                document.getElementById("display").innerHTML = temp;
+    }
+
+    else {
+ document.getElementById("temp").innerHTML = "Select a Unit";
+          }
+   }
+
+ function toCelsius(temp)
+{
+ return (temp - 32) * (5/9);
+}
+
+function toFahrenheit(temp)
+{
+  return temp * 9 / 5 + 32;   
+}
+</script>
+
+<script>
+
+
+    const ans = Math.floor(Math.random() * 10 + 1);
+    
+    let guesses =0;
+    
+    document.getElementById("submitGuess").onclick = function()
+    {
+        let guess = document.getElementById("guess").value;
+        guesses +=1;
+    
+        if(ans == guess)
+            {
+                alert(` ${ans} is the #. It took you ${guesses} guesses `);
+               
+            }
+            else if(guess < ans)
+                {
+                     alert('To Small!');
+                }else{
+    
+                    alert("To large");
+                }
+    }
+</script>    
+
+<script>
+//counter program
+let counter =0;
+
+document.getElementById("inc").onclick = function()
+{
+    counter +=1;
+   document.getElementById("counter").innerHTML = counter;
+
+}
+document.getElementById("dec").onclick = function()
+{
+
+  if(counter !=0 && counter >=0) {
+   document.getElementById("counter").innerHTML = counter -=1;
+  }
+}
+
+document.getElementById("reset").onclick = function()
+{
+    counter=0;
+   document.getElementById("counter").innerHTML = counter;
+}
+
+</script>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    *{
+    margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+}
+
+body{
+ 
+  background: rgb(34, 33, 33); 
+  
+}
+
+
+.container {
+  max-width:  450px;
+  margin: 0px auto 0;
+  box-shadow: 0px 16px 10px 6px rgba(3, 3, 3, 0.4);   
+  border-radius: 20px;   
+} 
+.calculator {
+
+  border: 1px solid #fafafa;
+  background-position: center;
+  align-items: center;
+  text-align: center;
+  background-size: cover;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: 0px 3px 15px rgba(80, 80, 84, 0.4);
+  
+}
+
+input{
+
+  width: 320px;
+  border: none;
+  padding: 25px;
+  margin: 10px;
+  background: transparent;
+  box-shadow: 5px 3px 20px rgba(148, 134, 134, 0.2); 
+  background-color: #2b2a2a;
+  font-size: 40px;
+  text-align: right;
+  cursor: pointer;
+  color: #ffffff;
+
+}
+input::placeholder{
+color: #ffffff;
+}
+
+button{
+
+  border: none;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  border-radius: 45%;
+  background: transparent;
+  color: #ffffff;
+  font-size: 20px;
+  box-shadow: inset 5px 10px 20px rgba(255, 255, 255, 0.4); 
+  cursor: pointer;
+
+
+}
+
+.equal{
+  background-color: rgb(75, 130, 12);
+}
+
+.operator{
+  background-color: rgb(21, 120, 160);
+  font-size: larger;
+}
+
+</style>
+  <body>
+
+    <div class="container">
+        <div class=" calculator">
+            <input type="text" id="inputBox" placeholder="0">
+
+            <div>
+                <button class="button operator">AC</button>
+                <button class="button operator">DEL</button>
+                <button class="button operator">%</button>
+                <button class="button operator">/</button>
+            </div>
+
+            <div>
+                <button class="button">7</button>
+                <button class="button">8</button>
+                <button class="button">9</button>
+                <button class="button operator">*</button>
+            </div>
+
+            <div>
+                <button class="button">4</button>
+                <button class="button">5</button>
+                <button class="button">6</button>
+                <button class="button operator">-</button>
+            </div>
+
+            <div>
+                <button class="button">1</button>
+                <button class="button">2</button>
+                <button class="button">3</button>
+                <button class="button operator">+</button>
+            </div>
+
+            <div>
+                <button class="button">00</button>
+                <button class="button">0</button>
+                <button class="button">.</button>
+                <button class="button equal">=</button>
+            </div>
+    </body>
+
+    <script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+    const inputBox = document.getElementById("inputBox");
+    const buttons = document.querySelectorAll(".button");
+
+    for (let i = 0; i < buttons.length; i++) { 
+        buttons[i].addEventListener("click", function() {
+            const buttonText = buttons[i].textContent;
+            if (buttonText === "AC") {
+                inputBox.value = "";
+            } else if (buttonText === "DEL") {
+                inputBox.value = inputBox.value.slice(0, -1);
+            } else if (buttonText === "=") {
+                try {
+                    inputBox.value = evaluateExpression(inputBox.value);
+                } catch(error) {
+                    inputBox.value = "Error";
+                }
+            } else {
+                inputBox.value += buttonText;
+            }
+        });
+    }
+
+    function evaluateExpression(expression) {
+        return eval(expression);
+    }
+});
+
+    </script>
+</html>

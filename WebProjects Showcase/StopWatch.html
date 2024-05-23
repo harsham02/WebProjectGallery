@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+    </style>
+<style>
+    body {
+  font-family: "Courier Prime", monospace;
+  background: #e8bcbc;
+ 
+}
+    .container {
+        width: 100%;
+        max-width: 600px;
+        background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8), #191919);
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        padding: 40px 0;
+        color: #fff;
+        margin: 200px auto 0;
+        box-shadow: 0 6px 0 6px rgba(0,0,0,0.4);
+        
+    }
+
+    .stop-watch span{
+        margin-top: 60px;
+        font-size: 64px;
+        font-weight: 300;     
+    }
+  h1{
+       text-decoration: underline;
+    }
+    button {
+        align-items: center;
+        justify-content: center;
+        width:  100px;
+        margin: 30px 20px 0 20px;
+        cursor: pointer;
+        font-size: 30px;
+        background-color: blanchedalmond;
+        border-radius: 10px;
+    }
+    button:hover {
+        background-color: rgb(53, 53, 53);
+        color: #fff;
+     
+    }
+</style>
+<body>
+    <div class="container">
+    <h1> STOP WATCH</h1>
+    <div class="stop-watch">
+        <span id="display">00:00:00</span><br>
+        <button type="button" id="stopBtn" onclick="stopTimer()">stop</button>
+            <button type="button" id="startBtn" onclick="startWatch()">start</button>
+            <button type="button" id="reset" onclick="resetWatch()">reset</button> 
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+  let [hours, minutes, seconds] = [0,0,0];
+    let timerID = null;
+
+    let display = document.getElementById('display');
+
+    function updateWatch()
+    {
+        seconds++;
+        if(seconds == 60)
+        {
+            seconds=0;
+            minutes++;
+
+            if(minutes == 60)
+            {
+                minutes=0;
+                hours++;
+            }
+        }
+
+        let s = seconds < 10 ? "0" + seconds : seconds;
+        let m = minutes < 10 ? "0" + minutes : minutes;
+        let h = hours < 10 ? "0" + hours : hours;
+
+        display.textContent = `${h}:${m}:${s}`;
+    }
+
+    function startWatch()
+    {
+        if(timerID !== null)
+        {
+            clearInterval(timerID);
+        }
+        timerID = setInterval(updateWatch, 1000);
+    }
+
+    function resetWatch()
+    {
+        clearInterval(timerID);
+        [hours, minutes, seconds] = [0,0,0];
+        display.textContent = "00:00:00";
+    }
+
+    function stopTimer()
+    {
+        clearInterval(timerID);
+    }
+ </script>
+</html>
